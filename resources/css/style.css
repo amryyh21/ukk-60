@@ -1,0 +1,76 @@
+body {
+    background-color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: white;
+    border-right: 1px solid #edf2f7;
+    position: fixed;
+    padding: 20px;
+}
+
+.nav-link {
+    color: #64748b;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.nav-link.active {
+    background-color: #e0f2fe;
+    color: #0ea5e9;
+}
+
+/* Card & Table Styling */
+.main-content {
+    margin-left: 260px;
+    padding: 30px;
+}
+
+.card-custom {
+    background: white;
+    border: 1px solid #edf2f7;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 15px 20px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.table td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    color: #1e293b;
+}
+
+/* Badge Styling */
+.badge-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.badge-active { background: #dcfce7; color: #16a34a; }
+.badge-inactive { background: #f1f5f9; color: #64748b; }
+
+.dot {
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+}
