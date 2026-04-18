@@ -7,10 +7,9 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LandingController::class, 'index'])->name('landing');
 #login
 // Menampilkan halaman login
-Route::get('/log', function () {
+Route::get('/', function () {
     return view('pages/login');
 })->name('login');
 // Menampilkan halaman login admin
