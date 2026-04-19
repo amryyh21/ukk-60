@@ -170,7 +170,6 @@
                                 <input class="form-check-input" type="checkbox" id="remember">
                                 <label class="form-check-label small text-muted" for="remember">Remember me</label>
                             </div>
-                            <a href="#" class="text-decoration-none small text-info fw-bold">Forgot password?</a>
                         </div>
 
                         <button type="submit" class="btn btn-log-in w-100 mb-3">LOG IN</button>
