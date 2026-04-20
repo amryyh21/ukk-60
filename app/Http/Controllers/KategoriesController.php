@@ -4,21 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategories;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class KategoriesController extends Controller
 {
     protected function adminUser(): User
     {
-        /** @var User|null $user */
-        $user = auth()->user();
+        $user = Auth::user();
 
-        abort_unless($user && $user->level === 'admin', 403);
+        if (! $user instanceof User || $user->level !== 'admin') {
+            abort(403);
+        }
 
         return $user;
     }
 
-    public function index()
+    public function index(): View
     {
         return view('admin.input_kategori', [
             'user' => $this->adminUser(),
@@ -26,7 +30,7 @@ class KategoriesController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->adminUser();
 
@@ -39,7 +43,7 @@ class KategoriesController extends Controller
         return redirect()->route('addKategori')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
-    public function destroy(Kategories $kategories)
+    public function destroy(Kategories $kategories): RedirectResponse
     {
         $this->adminUser();
 
