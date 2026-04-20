@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->unique()->after('name'); // Menambah kolom email setelah name
+            if (! Schema::hasColumn('users', 'email')) {
+                $table->string('email')->unique()->after('name');
+            }
         });
     }
 
@@ -22,7 +24,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            if (Schema::hasColumn('users', 'email')) {
+                $table->dropUnique('users_email_unique');
+                $table->dropColumn('email');
+            }
         });
     }
 };
