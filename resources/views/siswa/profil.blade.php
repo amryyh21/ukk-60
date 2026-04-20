@@ -38,11 +38,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 text-md-end mt-4 mt-md-0">
-                <button class="btn btn-info text-white px-4 py-2 rounded-pill shadow-sm fw-bold" style="background-color: #00bee7; border:none;">
-                    Edit Profil
-                </button>
-            </div>
         </div>
     </div>
 
