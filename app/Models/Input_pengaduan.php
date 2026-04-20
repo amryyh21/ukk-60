@@ -2,11 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property int $kategori_id
+ * @property string $judul_laporan
+ * @property string $isi_laporan
+ * @property string $tgl_pengaduan
+ * @property string|null $foto
+ * @property string $status
+ * @property-read string|null $foto_url
+ * @property-read string $status_label
+ * @property-read string $status_badge_class
+ * @property-read User $user
+ * @property-read Kategories $kategori
+ * @property-read Tanggapan|null $tanggapan
+ */
 class Input_pengaduan extends Model
 {
     use HasFactory;
@@ -23,17 +41,17 @@ class Input_pengaduan extends Model
         'status',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function kategori()
+    public function kategori(): BelongsTo
     {
         return $this->belongsTo(Kategories::class, 'kategori_id', 'id');
     }
 
-    public function tanggapan()
+    public function tanggapan(): HasOne
     {
         return $this->hasOne(Tanggapan::class, 'pengaduan_id', 'id');
     }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Input_aspirasi;
 use Illuminate\Http\Request;
 
 class InputAspirasiController extends Controller
@@ -34,7 +33,7 @@ class InputAspirasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Input_aspirasi $input_aspirasi)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +41,7 @@ class InputAspirasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Input_aspirasi $input_aspirasi)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +49,7 @@ class InputAspirasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Input_aspirasi $input_aspirasi)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +57,7 @@ class InputAspirasiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Input_aspirasi $input_aspirasi)
+    public function destroy(string $id)
     {
         //
     }

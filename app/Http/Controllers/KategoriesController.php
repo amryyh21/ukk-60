@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategories;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KategoriesController extends Controller
 {
-    protected function adminUser()
+    protected function adminUser(): User
     {
+        /** @var User|null $user */
         $user = auth()->user();
 
         abort_unless($user && $user->level === 'admin', 403);

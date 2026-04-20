@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Input_pengaduan;
 use App\Models\Kategories;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -11,8 +12,9 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class SiswaController extends Controller
 {
-    protected function siswa()
+    protected function siswa(): User
     {
+        /** @var User|null $user */
         $user = Auth::user();
 
         abort_unless($user && $user->level === 'siswa', 403);
@@ -89,6 +91,7 @@ class SiswaController extends Controller
 
     public function photo(Input_pengaduan $report): StreamedResponse
     {
+        /** @var User|null $user */
         $user = Auth::user();
 
         abort_unless($user && ($user->level === 'admin' || $report->user_id === $user->id), 403);

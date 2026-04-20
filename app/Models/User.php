@@ -3,10 +3,20 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property int $id
+ * @property string $nis_nip
+ * @property string $name
+ * @property string|null $email
+ * @property string|null $kelas
+ * @property string|null $telp
+ * @property string $level
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -50,7 +60,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function pengaduan()
+    public function pengaduan(): HasMany
     {
         return $this->hasMany(Input_pengaduan::class, 'user_id', 'id');
     }
