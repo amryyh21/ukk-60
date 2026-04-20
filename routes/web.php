@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KategoriesController;
-use App\Http\Controllers\LandingController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,10 +11,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages/login');
 })->name('login');
-// Menampilkan halaman login admin
-Route::get('/logAdmin', function () {
-    return view('admin/logAdmin');
-})->name('login.admin');
 
 
 // Memproses data login user
