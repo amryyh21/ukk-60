@@ -61,7 +61,7 @@
                     <tbody>
                         @forelse ($recentReports as $report)
                             <tr>
-                                <td class="fw-bold text-info">#RPT-{{ str_pad((string) $report->id, 4, '0', STR_PAD_LEFT) }}</td>
+                                <td class="fw-bold text-info">{{ str_pad((string) $report->id, 4, '0', STR_PAD_LEFT) }}</td>
                                 <td class="fw-bold">{{ $report->user->name ?? '-' }}</td>
                                 <td>{{ $report->kategori->nama_kategori ?? '-' }}</td>
                                 <td>{{ $report->judul_laporan }}</td>
