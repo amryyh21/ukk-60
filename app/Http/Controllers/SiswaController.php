@@ -6,6 +6,8 @@ use App\Models\Input_pengaduan;
 use App\Models\Kategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class SiswaController extends Controller
 {
@@ -83,6 +85,16 @@ class SiswaController extends Controller
                 ->latest()
                 ->get(),
         ]);
+    }
+
+    public function photo(Input_pengaduan $report): StreamedResponse
+    {
+        $user = Auth::user();
+
+        abort_unless($user && ($user->level === 'admin' || $report->user_id === $user->id), 403);
+        abort_unless($report->foto && Storage::disk('public')->exists($report->foto), 404);
+
+        return Storage::disk('public')->response($report->foto);
     }
 
     public function profile()

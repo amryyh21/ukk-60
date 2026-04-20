@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Route;
 
 class Input_pengaduan extends Model
 {
@@ -42,8 +43,8 @@ class Input_pengaduan extends Model
         return Attribute::make(
             get: function ($value, $attributes) {
                 return !empty($attributes['foto'])
-                    ? asset('storage/' . $attributes['foto'])
-                    : asset('images/no-image.png');
+                    ? (Route::has('reports.photo') ? route('reports.photo', $this) : asset('storage/' . $attributes['foto']))
+                    : null;
             }
         );
     }

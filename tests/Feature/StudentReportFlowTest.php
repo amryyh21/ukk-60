@@ -51,4 +51,26 @@ class StudentReportFlowTest extends TestCase
         $response->assertOk();
         $response->assertSee('Kursi rusak di kelas XII RPL 1');
     }
+
+    public function test_siswa_can_open_uploaded_report_photo(): void
+    {
+        Storage::fake('public');
+        $this->seed();
+
+        $siswa = User::where('level', 'siswa')->firstOrFail();
+        $kategori = Kategories::firstOrFail();
+
+        $this->actingAs($siswa)->post(route('aspirasi.store'), [
+            'kategori_id' => $kategori->id,
+            'judul_laporan' => 'Jendela pecah di lab',
+            'isi_laporan' => 'Kaca jendela retak dan perlu diganti.',
+            'foto' => UploadedFile::fake()->image('jendela.jpg'),
+        ]);
+
+        $report = Input_pengaduan::where('judul_laporan', 'Jendela pecah di lab')->firstOrFail();
+
+        $response = $this->actingAs($siswa)->get(route('reports.photo', $report));
+
+        $response->assertOk();
+    }
 }

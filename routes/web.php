@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/aspirasi', [SiswaController::class, 'storeAspirasi'])->name('aspirasi.store');
     Route::get('/profil', [SiswaController::class, 'profile'])->name('profil');
     Route::get('/history', [SiswaController::class, 'history'])->name('history');
+    Route::get('/reports/{report}/photo', [SiswaController::class, 'photo'])->name('reports.photo');
 });
 
 #admin
