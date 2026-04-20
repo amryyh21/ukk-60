@@ -89,16 +89,17 @@ class SiswaController extends Controller
         ]);
     }
 
-    public function photo(Input_pengaduan $report): StreamedResponse
-    {
-        /** @var User|null $user */
-        $user = Auth::user();
+public function photo(Input_pengaduan $report)
+{
+    /** @var User|null $user */
+    $user = Auth::user();
 
-        abort_unless($user && ($user->level === 'admin' || $report->user_id === $user->id), 403);
-        abort_unless($report->foto && Storage::disk('public')->exists($report->foto), 404);
+    abort_unless($user && ($user->level === 'admin' || $report->user_id === $user->id), 403);
+    abort_unless($report->foto && Storage::disk('public')->exists($report->foto), 404);
 
-        return Storage::disk('public')->response($report->foto);
-    }
+    // Ganti jadi ini:
+    return response()->file(storage_path('app/public/' . $report->foto));
+}
 
     public function profile()
     {
